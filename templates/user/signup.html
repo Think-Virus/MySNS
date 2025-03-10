@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    회원가입
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="wrap">
+            <h2 class="title-center"> 회원가입 </h2>
+            <form class="form-area" method="post" action="/sign-up/"> <!--form은 화면에 있는 데이터를 서버로 전송할 때, 자주 이용 / method는 기능 / action은 어떤 url로 전달이 될 것인지 설정-->
+                {% csrf_token %} <!-- django에서 데이터를 post로 보낼 때, 보완해주는 기능 -->
+                <div class="form-group mt-2 mb-2">
+                    <label for="username">이름</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="password">비밀번호</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="password2">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="password2" name="password2">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="bio">나를 한마디로</label>
+                    <input type="text" class="form-control" id="bio" name="bio">
+                </div>
+                <hr>
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <div style="float: right">
+                    <button type="submit" class="btn btn-primary">회원가입</button> <!-- 버튼은 폼 안에 있을 경우, 해당하는 폼을 실행시켜주는 역할 -->
+                    <a href="/sign-in" class="btn btn-secondary">로그인 페이지로</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
